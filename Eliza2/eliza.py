@@ -228,7 +228,7 @@ class Eliza:
 
 def main():
     eliza = Eliza()
-    eliza.load('doctor.txt')
+    eliza.load('Eliza2/doctor.txt')
     eliza.run()
 
 if __name__ == '__main__':
