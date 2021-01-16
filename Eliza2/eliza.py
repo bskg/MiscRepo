@@ -169,9 +169,6 @@ class Eliza:
         return None
 
     def respond(self, text):
-        if text.lower() in self.quits:
-            return None
-
         text = re.sub(r'\s*\.+\s*', ' . ', text)
         text = re.sub(r'\s*,+\s*', ' , ', text)
         text = re.sub(r'\s*;+\s*', ' ; ', text)
@@ -205,15 +202,7 @@ class Eliza:
 
         return " ".join(output)
 
-    def initial(self):
-        return random.choice(self.initials)
-
-    def final(self):
-        return random.choice(self.finals)
-
     def run(self):
-        print(self.initial())
-
         while True:
             sent = input('> ')
 
@@ -222,8 +211,6 @@ class Eliza:
                 break
 
             print(output)
-
-        print(self.final())
 
 
 def main():
