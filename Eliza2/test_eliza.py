@@ -5,6 +5,7 @@ import eliza
 class ElizaTest(unittest.TestCase):
     def test_decomp_1(self):
         el = eliza.Eliza()
+        a = 1
         self.assertEqual([], el._match_decomp(['a'], ['a']))
         self.assertEqual([], el._match_decomp(['a', 'b'], ['a', 'b']))
 
