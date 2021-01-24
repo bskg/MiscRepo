@@ -1,10 +1,28 @@
-import nltk
 from collections import Counter
 
-txt = open("output.txt").read().replace(',','').replace('.','').replace(';','')
+lines = open("chat.txt").read().replace("Avatar","").replace(".", " ").split("\n")
+b = []
+s = []
 
-tokenized = nltk.word_tokenize(txt)
-total = len(tokenized)
-top = Counter(tokenized).most_common(10)
-print('\n'.join([g[0] for g in top]))
-print(sum([g[1] for g in top]) * 100 / total)
+s_talking = False
+for i in range(len(lines)):
+    if lines[i][:7] == "bjorn96":
+        s_talking = False
+        continue
+    if lines[i][:4] == "weir":
+        s_talking = True
+        continue
+
+    if s_talking:
+        s.append(lines[i])
+    else:
+        b.append(lines[i])
+
+b_words = ' '.join(b).split(' ')
+s_words = ' '.join(s).split(' ')
+bc = Counter(b_words)
+sc = Counter(s_words)
+
+for w in sc.keys():
+    sc[w] = sc[w] / (bc[w]+0.00001)
+print(sc.most_common(100))
